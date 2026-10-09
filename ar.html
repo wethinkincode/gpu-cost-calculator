@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>حاسبة تكلفة وقيمة GPU | مقارنة RunPod ضد AWS | 345.ai</title>
+  <meta name="description" content="احسب تكلفة GPU الشهرية لتوليد الصور وضبط النماذج اللغوية. قارن بين أسعار RunPod و AWS ووفر حتى 70% من تكاليف الحوسبة.">
+  <meta property="og:title" content="حاسبة تكلفة وقيمة GPU | مقارنة RunPod ضد AWS | 345.ai">
+  <meta property="og:description" content="احسب تكلفة GPU الشهرية لتوليد الصور وضبط النماذج اللغوية. قارن بين أسعار RunPod و AWS ووفر حتى 70% من تكاليف الحوسبة.">
+  <!-- ── Subpage Hreflang alternate tags ── -->
+  <link rel="alternate" hreflang="en" href="https://345.ai/calc.html" />
+  <link rel="alternate" hreflang="zh" href="https://345.ai/calc-cn.html" />
+  <link rel="alternate" hreflang="ja" href="https://345.ai/calc-jp.html" />
+  <link rel="alternate" hreflang="ko" href="https://345.ai/calc-kr.html" />
+  <link rel="alternate" hreflang="ar" href="https://345.ai/calc-ar.html" />
+  <link rel="alternate" hreflang="x-default" href="https://345.ai/calc.html" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── Primary SEO ── -->
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="345.ai">
+<link rel="canonical" href="https://345.ai/calc-ar.html">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- ── Open Graph ── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="345.ai">
+
+<meta property="og:url" content="https://345.ai/ar.html">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:image" content="https://345.ai/og-image.jpg">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:description" content="دليل منسق لأكثر من 80 من أفضل أدوات الذكاء الاصطناعي والويب 3.">
+<meta name="twitter:image" content="https://345.ai/og-image.jpg">
+
+<link rel="icon" href="favicon.png" type="image/png">
+
+<!-- ── Web Fonts ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ── Structured Data: WebSite ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "345.ai",
+  "url": "https://345.ai/ar.html",
+  "description": "دليل منسق لأفضل أدوات الذكاء الاصطناعي والويب 3.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://345.ai/ar.html?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<style>
+  :root {
+    --bg: #030307;
+    --card-bg: rgba(19, 19, 30, 0.6);
+    --card-hover: rgba(30, 30, 48, 0.8);
+    --text: #f3f3f7;
+    --text-secondary: #94a3b8;
+    --accent: #7c3aed;
+    --accent-light: #a78bfa;
+    --accent-glow: rgba(124, 58, 237, 0.15);
+    --accent-border: rgba(124, 58, 237, 0.3);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.18);
+    --tag-bg: rgba(124, 58, 237, 0.15);
+    --radius: 16px;
+    --gold: #f59e0b;
+    --gold-glow: rgba(245, 158, 11, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: "Cairo", "Inter", -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Ambient Glow Backgrounds */
+  body::before {
+    content: '';
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    bottom: -100px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* Header Section */
+  .header { text-align: center; padding: 80px 0 20px; }
+  .logo { 
+    font-size: 64px; 
+    font-weight: 800; 
+    letter-spacing: -3px; 
+    background: linear-gradient(135deg, #c084fc 0%, var(--accent) 50%, #22d3ee 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+    margin-bottom: 12px;
+    display: inline-block;
+    filter: drop-shadow(0 0 30px var(--accent-glow));
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .logo:hover {
+    transform: scale(1.03);
+  }
+  .subtitle { color: var(--text-secondary); font-size: 18px; font-weight: 400; max-width: 600px; margin: 0 auto; }
+
+  /* Search & Filter Bar */
+  .search-wrap { max-width: 600px; margin: 40px auto 48px; position: relative; }
+  .search-input { 
+    width: 100%; 
+    padding: 16px 52px 16px 20px; 
+    border-radius: var(--radius); 
+    border: 1px solid var(--border); 
+    background: rgba(15, 15, 25, 0.8); 
+    backdrop-filter: blur(10px);
+    color: var(--text); 
+    font-size: 16px; 
+    outline: none; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+  }
+  .search-input:focus { 
+    border-color: var(--accent); 
+    box-shadow: 0 0 0 4px var(--accent-glow), inset 0 2px 4px rgba(0,0,0,0.5); 
+    background: rgba(20, 20, 35, 0.9);
+  }
+  .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 20px; pointer-events: none; }
+
+  /* Navigation Tabs */
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 48px; }
+  .tab-btn { 
+    background: rgba(20, 20, 30, 0.6); 
+    border: 1px solid var(--border); 
+    color: var(--text-secondary); 
+    padding: 10px 20px; 
+    border-radius: 30px; 
+    font-size: 14px; 
+    font-weight: 500;
+    cursor: pointer; 
+    transition: all 0.25s ease; 
+    backdrop-filter: blur(5px);
+  }
+  .tab-btn:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+    background: rgba(30, 30, 45, 0.6);
+  }
+  .tab-btn.active { 
+    background: var(--accent); 
+    color: #ffffff; 
+    border-color: var(--accent); 
+    box-shadow: 0 4px 20px var(--accent-glow);
+  }
+
+  /* Pinned Featured Deals Section */
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.5px;
+  }
+  .section-title span {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+    margin-bottom: 56px;
+  }
+
+  /* Deal Card Styling */
+  .deal-card {
+    background: linear-gradient(135deg, rgba(26, 17, 50, 0.7) 0%, rgba(15, 15, 27, 0.7) 100%);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .deal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--accent) 100%);
+    opacity: 0.8;
+  }
+  .deal-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(124, 58, 237, 0.6);
+    box-shadow: 0 16px 40px rgba(124, 58, 237, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.4);
+  }
+
+  .badge-hot {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .deal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-direction: row-reverse;
+  }
+  .deal-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+  }
+  .deal-tag {
+    background: var(--tag-bg);
+    color: var(--accent-light);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .deal-desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* Coupon Box */
+  .coupon-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .coupon-box:hover {
+    border-color: var(--accent-light);
+    background: rgba(124, 58, 237, 0.05);
+  }
+  .coupon-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .coupon-code {
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .coupon-copy-tip {
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 500;
+  }
+
+  .deal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 16px;
+  }
+  .deal-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+    transition: all 0.2s ease;
+  }
+  .deal-action-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+  }
+
+  /* General Tools Grid */
+  .tools-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); 
+    gap: 24px; 
+    padding-bottom: 80px; 
+  }
+  
+  .tool-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border); 
+    border-radius: var(--radius); 
+    padding: 24px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    text-decoration: none; 
+    color: inherit; 
+    backdrop-filter: blur(10px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+  }
+  .tool-card:hover { 
+    border-color: var(--border-hover); 
+    background: var(--card-hover);
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05); 
+  }
+  .tool-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-direction: row-reverse; }
+  .tool-name { font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+  .tool-tag { 
+    background: rgba(255, 255, 255, 0.05); 
+    color: var(--text-secondary); 
+    font-size: 11px; 
+    font-weight: 600; 
+    padding: 4px 10px; 
+    border-radius: 12px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+  }
+  .tool-tag.web3-special {
+    background: var(--tag-bg);
+    color: var(--accent-light);
+  }
+  .tool-desc { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+  .tool-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-top: 1px solid rgba(255,255,255,0.05); 
+    padding-top: 14px; 
+  }
+  .tool-rating { font-size: 13px; color: var(--gold); display: flex; align-items: center; gap: 4px; font-weight: 500; flex-direction: row-reverse; }
+  .visit-btn { font-size: 13px; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 4px; transition: gap 0.2s; flex-direction: row-reverse; }
+  .tool-card:hover .visit-btn { gap: 8px; }
+
+  /* Utility classes */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /* Clipboard Toast Notification */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(124, 58, 237, 0.95);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+  }
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 100px;
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .footer-link:hover {
+    color: var(--accent-light);
+  }
+  .footer-disclosure {
+    max-width: 800px;
+    margin: 24px auto 0;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  /* Language Selector RTL override */
+  .lang-wrap {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: auto;
+    z-index: 100;
+  }
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(20, 20, 30, 0.6);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+  }
+  .lang-btn:hover {
+    border-color: var(--accent-light);
+    background: rgba(30, 30, 48, 0.8);
+  }
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: auto;
+    background: rgba(10, 10, 15, 0.95);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    width: 160px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+  }
+  .lang-dropdown.show {
+    display: flex;
+  }
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  .lang-item:hover:not(.disabled) {
+    color: #ffffff;
+    background: rgba(124, 58, 237, 0.15);
+  }
+  .lang-item.active {
+    color: var(--accent-light);
+    background: rgba(124, 58, 237, 0.1);
+    font-weight: 600;
+  }
+  .lang-item.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .lang-badge {
+    font-size: 9px;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-secondary);
+    padding: 1px 5px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  /* Highlight Card Animation */
+  @keyframes card-flash {
+    0% { box-shadow: 0 0 0 transparent; border-color: rgba(255, 255, 255, 0.08); }
+    50% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.8); border-color: #00f2fe; }
+    100% { box-shadow: 0 0 0 transparent; border-color: rgba(255, 255, 255, 0.08); }
+  }
+  .highlight-flash {
+    animation: card-flash 2.5s ease-in-out;
+  }
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at center, #0f0a1c 0%, #030307 100%);
+  color: #f3f3f7;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.calc-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.calc-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.calc-logo {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+}
+.back-link {
+  display: inline-block;
+  color: #a0aec0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+  margin-top: 10px;
+}
+.back-link:hover {
+  color: #00f2fe;
+}
+.calc-lang {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.calc-lang-item {
+  color: #718096;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.calc-lang-item:hover, .calc-lang-item.active {
+  color: #00f2fe;
+}
+.calculator-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.calc-card {
+  background: rgba(3, 3, 7, 0.65);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s;
+}
+.calc-card:hover {
+  border-color: rgba(0, 242, 254, 0.45);
+}
+@media (max-width: 768px) {
+  .calc-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+.calc-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.calc-title span {
+  color: #00f2fe;
+}
+.calc-group {
+  margin-bottom: 25px;
+}
+.calc-label {
+  display: block;
+  font-size: 14px;
+  color: #a0aec0;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.calc-select {
+  width: 100%;
+  padding: 14px;
+  background: rgba(26, 26, 36, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.3s;
+  cursor: pointer;
+}
+.calc-select:focus {
+  border-color: #00f2fe;
+}
+.calc-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.calc-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00f2fe;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00f2fe;
+  transition: transform 0.1s;
+}
+.calc-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+.calc-slider-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00f2fe;
+  width: 60px;
+  text-align: right;
+}
+.calc-results {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px dashed rgba(124, 58, 237, 0.35);
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.result-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 20px;
+}
+.result-label {
+  color: #a0aec0;
+  font-size: 14px;
+}
+.result-val {
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+}
+.result-val.highlight {
+  color: #00f2fe;
+  text-shadow: 0 0 5px rgba(0, 242, 254, 0.5);
+  font-size: 22px;
+}
+.result-val.green {
+  color: #10b981;
+  text-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+  font-size: 18px;
+}
+.calc-btn {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #7c3aed, #00f2fe);
+  color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.calc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 242, 254, 0.45);
+}
+.calc-footnote {
+  font-size: 11px;
+  color: #718096;
+  margin-top: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+</style>
+  <!-- ── Multilingual alternate routing (SEO) ── -->
+  <link rel="alternate" hreflang="en" href="https://345.ai" />
+  <link rel="alternate" hreflang="zh" href="https://345.ai/cn.html" />
+  <link rel="alternate" hreflang="ja" href="https://345.ai/jp.html" />
+  <link rel="alternate" hreflang="ko" href="https://345.ai/kr.html" />
+  <link rel="alternate" hreflang="ar" href="https://345.ai/ar.html" />
+  <link rel="alternate" hreflang="x-default" href="https://345.ai" />
+
+</head>
+<body>
+
+  <div class="calc-container" dir="rtl">
+    <header class="calc-header">
+      <a href="index.html" class="calc-logo">345.ai</a>
+      <br>
+      <a href="index.html" class="back-link">← العودة إلى الدليل</a>
+              <div class="calc-lang">
+          <a href="calc.html" class="calc-lang-item ">EN</a>
+          <a href="calc-cn.html" class="calc-lang-item ">中文</a>
+          <a href="calc-jp.html" class="calc-lang-item ">日本語</a>
+          <a href="calc-kr.html" class="calc-lang-item ">한국어</a>
+          <a href="calc-ar.html" class="calc-lang-item active">العربية</a>
+        </div>
+    </header>
+
+    <!-- GPU Calculator Section -->
+    <section class="calculator-section" style="padding: 0; max-width: 100%;">
+      <div class="calc-card">
+        <div>
+          <h2 class="calc-title">⚡ <span>حاسبة تكلفة وقيمة GPU</span></h2>
+          <div class="calc-group">
+            <label class="calc-label" for="calcTask">اختر مهمة الذكاء الاصطناعي:</label>
+            <select class="calc-select" id="calcTask">
+              <option value="image">توليد الصور (Flux.1 / SDXL)</option>
+              <option value="train">ضبط النماذج اللغوية (LLM Fine-Tuning)</option>
+              <option value="infer">استضافة الدردشة والاستدلال (LLM Inference)</option>
+              <option value="video">توليد الفيديو والصور الرمزية بالذكاء الاصطناعي</option>
+            </select>
+          </div>
+          <div class="calc-group">
+            <label class="calc-label" for="calcHours">وقت تشغيل GPU اليومي (ساعات):</label>
+            <div class="calc-slider-wrap">
+              <input type="range" class="calc-slider" id="calcHours" min="1" max="24" value="3">
+              <span class="calc-slider-val" id="calcHoursVal">3h</span>
+            </div>
+          </div>
+          <div class="calc-group" style="margin-bottom: 0;">
+            <span class="calc-label">تحليل الشراء مقابل الاستئجار:</span>
+            <p id="resBreakeven" style="font-size: 13.5px; line-height: 1.4; margin: 0; font-weight: 500;"></p>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div>
+            <div class="result-item">
+              <span class="result-label">كرت الشاشة الموصى به (GPU):</span>
+              <span class="result-val" id="resGpu">-</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">تكلفة RunPod الشهرية:</span>
+              <span class="result-val highlight" id="resRunpod">-</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">تكلفة AWS المعادلة:</span>
+              <span class="result-val" id="resAws">-</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">التوفير الشهري:</span>
+              <span class="result-val green" id="resSavings">-</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">نسبة التوفير:</span>
+              <span class="result-val green highlight" id="resPct">-</span>
+            </div>
+          </div>
+          
+          <a href="https://runpod.io" target="_blank" rel="noopener noreferrer nofollow" class="calc-btn">
+            قم بنشر هذا الـ GPU على RunPod (احصل على مكافأة) ↗
+          </a>
+        </div>
+      </div>
+      <p class="calc-footnote">* تستند بيانات التسعير إلى الأسعار القياسية لـ RunPod Community Cloud مقابل AWS EC2 اعتبارا من يوليو 2026. يتم استهلاك الشراء المحلي على مدار 12 شهرا مع تكلفة كهرباء 0.16 دولار لكل كيلووات ساعة.</p>
+    </section>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+      <p style="font-size: 13px; color: #718096; margin: 0;">© 2017-2026 345.ai — Curated AI & Web3 Tools Directory. All rights reserved.</p>
+      <p style="font-size: 11px; color: #4a5568; margin-top: 10px; line-height: 1.5; max-width: 800px; margin-left: auto; margin-right: auto;">إخلاء المسؤولية: 345.ai هو دليل مختار. تعرض هذه الحاسبة تقديرات تستند إلى أسعار التشغيل القياسية الحالية. قد تحتوي الروابط الخارجية على رموز إحالة.</p>
+    </footer>
+  </div>
+
+<div id="toast" class="toast">تم نسخ كود الخصم إلى الحافظة بنجاح!</div>
+
+<script>
+
+  // GPU Calculator Logic
+  const gpuData = {
+    image: { name: 'RTX 4090 (24GB)', runpod: 0.69, aws: 1.21, buyLimit: 8 },
+    train: { name: 'A100 (80GB)', runpod: 1.89, aws: 4.09, buyLimit: 6 },
+    infer: { name: 'NVIDIA L4 (24GB)', runpod: 0.35, aws: 0.97, buyLimit: 12 },
+    video: { name: 'RTX 4090 (24GB)', runpod: 0.69, aws: 1.21, buyLimit: 8 }
+  };
+
+  const taskSelect = document.getElementById('calcTask');
+  const hoursSlider = document.getElementById('calcHours');
+  const hoursVal = document.getElementById('calcHoursVal');
+  const resGpu = document.getElementById('resGpu');
+  const resRunpod = document.getElementById('resRunpod');
+  const resAws = document.getElementById('resAws');
+  const resSavings = document.getElementById('resSavings');
+  const resPct = document.getElementById('resPct');
+  const resBreakeven = document.getElementById('resBreakeven');
+
+  function updateCalculator() {
+    if (!taskSelect || !hoursSlider) return;
+
+    const task = taskSelect.value;
+    const hours = parseInt(hoursSlider.value);
+    const data = gpuData[task];
+
+    // Update hours label
+    hoursVal.textContent = hours + 'h';
+
+    // Calculate monthly bills
+    const runpodMonthly = data.runpod * hours * 30;
+    const awsMonthly = data.aws * hours * 30;
+    const savingsMonthly = awsMonthly - runpodMonthly;
+    const savingsPct = ((awsMonthly - runpodMonthly) / awsMonthly) * 100;
+
+    // Update UI values
+    resGpu.textContent = data.name;
+    resRunpod.textContent = '$' + runpodMonthly.toFixed(2);
+    resAws.textContent = '$' + awsMonthly.toFixed(2);
+    resSavings.textContent = '$' + savingsMonthly.toFixed(2);
+    resPct.textContent = savingsPct.toFixed(0) + '%';
+
+    // Update breakeven text based on active translation dataset
+    const lang = document.documentElement.lang || 'en';
+    let breakevenText = "";
+    if (hours <= data.buyLimit) {
+      if (lang === 'zh' || lang === 'cn') {
+        breakevenText = "强烈推荐租用 (按量计费比自购显卡节省约 90% 前期资金)";
+      } else if (lang === 'ja' || lang === 'jp') {
+        breakevenText = "レンタルを強く推奨 (従量課金で初期費用を約90%削減)";
+      } else if (lang === 'ko' || lang === 'kr') {
+        breakevenText = "대여 적극 권장 (종량제로 초기 비용 약 90% 절감)";
+      } else if (lang === 'ar') {
+        breakevenText = "نوصي بشدة بالاستئجار (الدفع حسب الاستخدام يوفر 90% من التكلفة الأولية)";
+      } else {
+        breakevenText = "Renting is highly recommended (saves ~90% upfront capital vs buying)";
+      }
+      resBreakeven.style.color = '#10b981'; // Green
+    } else {
+      if (lang === 'zh' || lang === 'cn') {
+        breakevenText = "对于 24/7 不间断运行，自购物理显卡长期来看可能更划算。";
+      } else if (lang === 'ja' || lang === 'jp') {
+        breakevenText = "24時間365日の連続稼働には、物理カード의購入이 적합합니다.";
+      } else if (lang === 'ko' || lang === 'kr') {
+        breakevenText = "24/7 연속 작동 시 물리 카드 구매가 더 유리할 수 있습니다.";
+      } else if (lang === 'ar') {
+        breakevenText = "قد يكون شراء كرت مادي أفضل لأعباء العمل المستمرة على مدار الساعة.";
+      } else {
+        breakevenText = "Buying a physical card may be better for continuous 24/7 workloads.";
+      }
+      resBreakeven.style.color = '#a0aec0'; // Gray
+    }
+    resBreakeven.textContent = breakevenText;
+  }
+
+  if (taskSelect && hoursSlider) {
+    taskSelect.addEventListener('change', updateCalculator);
+    hoursSlider.addEventListener('input', updateCalculator);
+    updateCalculator(); // Run once initially
+  }
+
+</script>
+</body>
+</html>
