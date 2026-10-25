@@ -23,21 +23,22 @@ Built with zero external dependencies, 100% Vanilla HTML/CSS/JavaScript, and sub
 
 ## 📊 2026 Cloud GPU Benchmark Index
 
-| Workload / Model | Recommended GPU | RunPod Rate | AWS Equivalent | Estimated Savings |
-| :--- | :--- | :--- | :--- | :--- |
-| **FLUX.1 / SDXL Image Gen** | `RTX 4090 (24GB)` | **$0.69 / hr** | $1.21 / hr (g5.2xl) | **43% Cheaper** |
-| **LLaMA 3 8B LoRA Fine-Tuning** | `A100 SXM (80GB)` | **$1.89 / hr** | $4.09 / hr (p4de) | **54% Cheaper** |
-| **High-Throughput LLM Inference** | `NVIDIA L4 (24GB)` | **$0.35 / hr** | $0.97 / hr (g6.2xl) | **64% Cheaper** |
+| Workload / Model | Recommended GPU | RunPod Rate | Vast.ai Rate | AWS Equivalent | Estimated Savings |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **FLUX.1 / SDXL Image Gen** | `RTX 4090 (24GB)` | **$0.69 / hr** | **$0.44 / hr** | $1.21 / hr (g5.2xl) | **43% – 64% Cheaper** |
+| **LLaMA 3 8B LoRA Fine-Tuning** | `A100 SXM (80GB)` | **$1.89 / hr** | **$1.45 / hr** | $4.09 / hr (p4de) | **54% – 65% Cheaper** |
+| **High-Throughput LLM Inference** | `NVIDIA L4 (24GB)` | **$0.35 / hr** | **$0.22 / hr** | $0.97 / hr (g6.2xl) | **64% – 77% Cheaper** |
 
 ---
 
 ## ✨ Key Features
 
-1. **Task-Based GPU Matching**: Select whether you are running image diffusion, fine-tuning an 8B LLM, or deploying high-speed inference.
-2. **Dynamic Monthly Cost Curve**: Interactive daily runtime slider (1 to 24 hours/day) that computes projected monthly cloud bills.
-3. **Honest "Buy vs. Rent" Breakeven Analysis**: Unlike typical affiliate calculators, this tool actively warns users when running 24/7 that purchasing a physical workstation (e.g. RTX 4090 @ $1,600) breaks even in ~3 months compared to continuous cloud rental.
-4. **Zero Ads & Pure Utility**: Non-commercial, direct official links, no affiliate query tracking parameters.
-5. **Ultra-Lightweight & Embeddable**: Can be embedded into any dashboard or documentation page via an `<iframe>` or standalone script.
+1. **Task-Based GPU Matching**: Select whether you are running image diffusion (Flux.1 / SDXL), fine-tuning an 8B LLM, video rendering, or deploying high-speed inference.
+2. **Multi-Cloud Rate Comparison**: Simultaneously evaluates **RunPod (Secure Cloud)**, **Vast.ai (Community Cloud)**, and **AWS EC2 (Hyperscale)**.
+3. **Hardware "Buy vs. Rent" Breakeven Matrix**: Mathematically calculates the exact months required to pay off an RTX 4090, A100, or L4 based on retail MSRP and local electricity draw ($0.16/kWh at full TDP wattage).
+4. **📋 1-Click Markdown / Reddit Table Export**: Generates and copies clean, beautifully formatted Markdown tables with live calculation data ready to paste into Reddit, GitHub Discussions, or Discord.
+5. **Zero Ads & Pure Utility**: Non-commercial, direct official links, zero tracking cookies or affiliate redirects.
+6. **Ultra-Lightweight & Embeddable**: 100% Vanilla HTML/JS, zero dependencies, runs locally or offline.
 
 ---
 
