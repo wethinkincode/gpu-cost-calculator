@@ -808,6 +808,80 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 242, 254, 0.45);
 }
+.calc-btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+  padding: 13px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.calc-btn-secondary:hover {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: #00f2fe;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+  transform: translateY(-1px);
+}
+.breakeven-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+}
+.breakeven-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #a0aec0;
+  padding: 4px 0;
+}
+.breakeven-row span:last-child {
+  color: #f3f3f7;
+  font-weight: 600;
+}
+.breakeven-verdict {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.toast-notice {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(13, 13, 22, 0.95);
+  border: 1px solid #10b981;
+  color: #f3f3f7;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.25);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
 .calc-footnote {
   font-size: 11px;
   color: #718096;
@@ -864,8 +938,24 @@ body {
             </div>
           </div>
           <div class="calc-group" style="margin-bottom: 0;">
-            <span class="calc-label">买卡 vs 租卡分析:</span>
-            <p id="resBreakeven" style="font-size: 13.5px; line-height: 1.4; margin: 0; font-weight: 500;"></p>
+            <span class="calc-label">自购硬件 vs. 云端租用 回本分析:</span>
+            <div class="breakeven-box">
+              <div class="breakeven-row">
+                <span>物理硬件参考零售价:</span>
+                <span id="beRetail">1,850 美元</span>
+              </div>
+              <div class="breakeven-row">
+                <span>预估每月本地电费:</span>
+                <span id="bePower">6.48 美元 / 月</span>
+              </div>
+              <div class="breakeven-row">
+                <span>回本周期 (收回硬件款):</span>
+                <span id="beTime" style="color: #00f2fe;">33.2 个月</span>
+              </div>
+              <div class="breakeven-verdict" id="resBreakeven">
+                <!-- 动态计算结果 -->
+              </div>
+            </div>
           </div>
         </div>
 
@@ -876,15 +966,19 @@ body {
               <span class="result-val" id="resGpu">-</span>
             </div>
             <div class="result-item">
-              <span class="result-label">RunPod 月度开销:</span>
+              <span class="result-label">RunPod 安全企业云:</span>
               <span class="result-val highlight" id="resRunpod">-</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Vast.ai 极客社区云:</span>
+              <span class="result-val" id="resVast" style="color: #a78bfa;">-</span>
             </div>
             <div class="result-item">
               <span class="result-label">AWS 等效月度开销:</span>
               <span class="result-val" id="resAws">-</span>
             </div>
             <div class="result-item">
-              <span class="result-label">每月节省金额:</span>
+              <span class="result-label">RunPod 相对 AWS 节省:</span>
               <span class="result-val green" id="resSavings">-</span>
             </div>
             <div class="result-item">
@@ -893,13 +987,23 @@ body {
             </div>
           </div>
           
-          <a href="https://runpod.io" target="_blank" rel="noopener noreferrer nofollow" class="calc-btn">
-            前往 RunPod 官方控制台部署 ↗
-          </a>
+          <div style="margin-top: 15px;">
+            <a href="https://runpod.io" target="_blank" rel="noopener noreferrer nofollow" class="calc-btn">
+              前往 RunPod 官方控制台部署 ↗
+            </a>
+            <button id="copyMarkdownBtn" class="calc-btn-secondary" onclick="copyMarkdownResult()">
+              <span>📋</span> 一键复制 Markdown 表格 (Reddit / 论坛)
+            </button>
+          </div>
         </div>
       </div>
-      <p class="calc-footnote">* 算力基准指数更新于：2026 年第四季度 (Q4 2026)。数据基准采集自 RunPod Secure Cloud 与 AWS EC2 官方按量计费标准。物理显卡按 12 个月硬件折旧、电费按 0.16 美元/度计算。</p>
+      <p class="calc-footnote">* 算力基准指数更新于：2026 年第四季度 (Q4 2026)。数据基准采集自 RunPod Secure Cloud、Vast.ai 社区云与 AWS EC2 官方按量计费标准。物理显卡按硬件生命周期折旧、电费按 0.16 美元/度计算。</p>
     </section>
+
+    <!-- 浮动复制成功提示 Toast -->
+    <div id="toastNotice" class="toast-notice">
+      <span>✅</span> <span id="toastMsg">Markdown 表格已复制！可直接粘贴至 Reddit、Discord 或技术论坛。</span>
+    </div>
 
     <footer style="text-align: center; margin-top: 50px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.05);">
       <p style="font-size: 13px; color: #718096; margin: 0;">© 2017-2026 345.ai — Curated AI & Web3 Tools Directory. All rights reserved.</p>
@@ -911,12 +1015,44 @@ body {
 
 <script>
 
-  // GPU Calculator Logic
+  // GPU 算力计算器逻辑
   const gpuData = {
-    image: { name: 'RTX 4090 (24GB)', runpod: 0.69, aws: 1.21, buyLimit: 8 },
-    train: { name: 'A100 (80GB)', runpod: 1.89, aws: 4.09, buyLimit: 6 },
-    infer: { name: 'NVIDIA L4 (24GB)', runpod: 0.35, aws: 0.97, buyLimit: 12 },
-    video: { name: 'RTX 4090 (24GB)', runpod: 0.69, aws: 1.21, buyLimit: 8 }
+    image: { 
+      name: 'RTX 4090 (24GB)', 
+      runpod: 0.69, 
+      vast: 0.44, 
+      aws: 1.21, 
+      retailPrice: 1850, 
+      watts: 450,
+      taskLabel: 'AI 绘图 (Flux.1 / SDXL)'
+    },
+    train: { 
+      name: 'A100 (80GB SXM)', 
+      runpod: 1.89, 
+      vast: 1.45, 
+      aws: 4.09, 
+      retailPrice: 9500, 
+      watts: 400,
+      taskLabel: '大模型微调 (Llama-3 LoRA 训练)'
+    },
+    infer: { 
+      name: 'NVIDIA L4 (24GB)', 
+      runpod: 0.35, 
+      vast: 0.22, 
+      aws: 0.97, 
+      retailPrice: 2400, 
+      watts: 72,
+      taskLabel: '大模型推理 / 对话托管'
+    },
+    video: { 
+      name: 'RTX 4090 (24GB)', 
+      runpod: 0.69, 
+      vast: 0.44, 
+      aws: 1.21, 
+      retailPrice: 1850, 
+      watts: 450,
+      taskLabel: 'AI 视频与数字人生成'
+    }
   };
 
   const taskSelect = document.getElementById('calcTask');
@@ -924,10 +1060,16 @@ body {
   const hoursVal = document.getElementById('calcHoursVal');
   const resGpu = document.getElementById('resGpu');
   const resRunpod = document.getElementById('resRunpod');
+  const resVast = document.getElementById('resVast');
   const resAws = document.getElementById('resAws');
   const resSavings = document.getElementById('resSavings');
   const resPct = document.getElementById('resPct');
   const resBreakeven = document.getElementById('resBreakeven');
+  const beRetail = document.getElementById('beRetail');
+  const bePower = document.getElementById('bePower');
+  const beTime = document.getElementById('beTime');
+
+  let currentCalcState = {};
 
   function updateCalculator() {
     if (!taskSelect || !hoursSlider) return;
@@ -936,59 +1078,117 @@ body {
     const hours = parseInt(hoursSlider.value);
     const data = gpuData[task];
 
-    // Update hours label
+    // 更新时长标签
     hoursVal.textContent = hours + 'h';
 
-    // Calculate monthly bills
+    // 计算月度账单
     const runpodMonthly = data.runpod * hours * 30;
+    const vastMonthly = data.vast * hours * 30;
     const awsMonthly = data.aws * hours * 30;
     const savingsMonthly = awsMonthly - runpodMonthly;
     const savingsPct = ((awsMonthly - runpodMonthly) / awsMonthly) * 100;
 
-    // Update UI values
+    // 电费计算: (功率W / 1000) * 每天小时数 * 30天 * 0.16美元/度
+    const powerMonthly = (data.watts / 1000) * hours * 30 * 0.16;
+
+    // 回本周期计算: retailPrice / (runpodMonthly - powerMonthly)
+    const netCloudDiff = runpodMonthly - powerMonthly;
+    let breakevenMonths = 0;
+    if (netCloudDiff > 0) {
+      breakevenMonths = data.retailPrice / netCloudDiff;
+    } else {
+      breakevenMonths = 999;
+    }
+
+    // 更新界面数值
     resGpu.textContent = data.name;
     resRunpod.textContent = '$' + runpodMonthly.toFixed(2);
+    if (resVast) resVast.textContent = '$' + vastMonthly.toFixed(2);
     resAws.textContent = '$' + awsMonthly.toFixed(2);
     resSavings.textContent = '$' + savingsMonthly.toFixed(2);
     resPct.textContent = savingsPct.toFixed(0) + '%';
 
-    // Update breakeven text based on active translation dataset
-    const lang = document.documentElement.lang || 'en';
-    let breakevenText = "";
-    if (hours <= data.buyLimit) {
-      if (lang === 'zh' || lang === 'cn') {
-        breakevenText = "强烈推荐租用 (按量计费比自购显卡节省约 90% 前期资金)";
-      } else if (lang === 'ja' || lang === 'jp') {
-        breakevenText = "レンタルを強く推奨 (従量課金で初期費用を約90%削減)";
-      } else if (lang === 'ko' || lang === 'kr') {
-        breakevenText = "대여 적극 권장 (종량제로 초기 비용 약 90% 절감)";
-      } else if (lang === 'ar') {
-        breakevenText = "نوصي بشدة بالاستئجار (الدفع حسب الاستخدام يوفر 90% من التكلفة الأولية)";
+    if (beRetail) beRetail.textContent = '$' + data.retailPrice.toLocaleString() + ' (MSRP)';
+    if (bePower) bePower.textContent = '$' + powerMonthly.toFixed(2) + ' / 月';
+    if (beTime) {
+      if (breakevenMonths > 120) {
+        beTime.textContent = '> 10 年';
       } else {
-        breakevenText = "Renting is highly recommended (saves ~90% upfront capital vs buying)";
+        beTime.textContent = breakevenMonths.toFixed(1) + ' 个月 (~' + (breakevenMonths / 12).toFixed(1) + ' 年)';
       }
-      resBreakeven.style.color = '#10b981'; // Green
-    } else {
-      if (lang === 'zh' || lang === 'cn') {
-        breakevenText = "对于 24/7 不间断运行，自购物理显卡长期来看可能更划算。";
-      } else if (lang === 'ja' || lang === 'jp') {
-        breakevenText = "24時間365日の連続稼働には、物理カード의購入이 적합합니다.";
-      } else if (lang === 'ko' || lang === 'kr') {
-        breakevenText = "24/7 연속 작동 시 물리 카드 구매가 더 유리할 수 있습니다.";
-      } else if (lang === 'ar') {
-        breakevenText = "قد يكون شراء كرت مادي أفضل لأعباء العمل المستمرة على مدار الساعة.";
-      } else {
-        breakevenText = "Buying a physical card may be better for continuous 24/7 workloads.";
-      }
-      resBreakeven.style.color = '#a0aec0'; // Gray
     }
-    resBreakeven.textContent = breakevenText;
+
+    // 动态回本结论文案
+    let verdictHtml = "";
+    if (hours <= 8) {
+      verdictHtml = `<span style="color: #10b981; font-weight: 600;">🟢 结论：强烈推荐租用云端算力</span><br>按每天运行 ${hours} 小时计算，自购物理显卡需要 <strong>${breakevenMonths.toFixed(1)} 个月</strong>才能回本。按量租用可为您在首年节省数千美元前期资金，且无显卡贬值、发热与维护风险。`;
+    } else {
+      verdictHtml = `<span style="color: #00f2fe; font-weight: 600;">🔵 结论：长周期高频使用自购更划算</span><br>每天高强度运行 ${hours} 小时，物理显卡在 <strong>${breakevenMonths.toFixed(1)} 个月</strong>即可完全收回硬件款。对于 24/7 不间断训练或企业常驻推理任务，自建物理机长期更省钱。`;
+    }
+    resBreakeven.innerHTML = verdictHtml;
+
+    // 存储当前计算快照供 Markdown 导出
+    currentCalcState = {
+      task: data.taskLabel,
+      gpu: data.name,
+      hours: hours,
+      runpodRate: data.runpod,
+      runpodMonthly: runpodMonthly.toFixed(2),
+      vastRate: data.vast,
+      vastMonthly: vastMonthly.toFixed(2),
+      awsRate: data.aws,
+      awsMonthly: awsMonthly.toFixed(2),
+      savingsMonthly: savingsMonthly.toFixed(2),
+      savingsPct: savingsPct.toFixed(0),
+      retailPrice: data.retailPrice,
+      powerMonthly: powerMonthly.toFixed(2),
+      breakevenMonths: breakevenMonths.toFixed(1)
+    };
+  }
+
+  function copyMarkdownResult() {
+    const s = currentCalcState;
+    if (!s.gpu) return;
+
+    const md = `### ⚡ GPU 算力成本与买卡 vs 租卡回本分析 (来自 345.ai)
+
+| 参数项 | 数值 | 详细说明 |
+|:---|:---|:---|
+| **AI 任务类型** | ${s.task} | 推荐硬件匹配方案 |
+| **推荐 GPU 显卡** | **${s.gpu}** | 显存与算力基准线 |
+| **每日运行时间** | **${s.hours} 小时 / 天** | 每月 ${(s.hours * 30)} 小时 |
+| **RunPod 安全企业云** | **$${s.runpodMonthly} / 月** ($${s.runpodRate}/h) | 比 AWS 节省 ~${s.savingsPct}% |
+| **Vast.ai 极客社区云** | **$${s.vastMonthly} / 月** ($${s.vastRate}/h) | 极致低门槛选择 |
+| **AWS EC2 等效开销** | **$${s.awsMonthly} / 月** ($${s.awsRate}/h) | 传统大厂基准 |
+| **预估每月本地电费** | **$${s.powerMonthly} / 月** | 按 $0.16/度电计算 |
+| **自购硬件回本周期** | **~${s.breakevenMonths} 个月** | 基于 $${s.retailPrice.toLocaleString()} 硬件官方指导价 |
+
+**核心结论：** ${s.hours <= 8 ? '轻中度开发者（≤8小时/天）强烈建议按需租用云算力，避免上万元资金沉淀与硬件折旧风险。' : '高强度 24/7 长期训练任务，自购物理显卡在 1 年内即可收回硬件成本，长期自建更具性价比。'}
+
+*数据生成自 [345.ai GPU 算力性价比与回本计算器](https://345.ai/calc-cn.html)*`;
+
+    navigator.clipboard.writeText(md).then(() => {
+      showToast('Markdown 表格已复制！可直接粘贴至 Reddit、Discord 或技术论坛。');
+    }).catch(err => {
+      console.error('剪贴板复制失败:', err);
+    });
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('toastNotice');
+    let toastMsg = document.getElementById('toastMsg');
+    if (!toast) return;
+    if (toastMsg && msg) toastMsg.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3200);
   }
 
   if (taskSelect && hoursSlider) {
     taskSelect.addEventListener('change', updateCalculator);
     hoursSlider.addEventListener('input', updateCalculator);
-    updateCalculator(); // Run once initially
+    updateCalculator(); // 首次执行
   }
 
 </script>
